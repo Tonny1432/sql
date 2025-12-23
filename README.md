@@ -1,206 +1,112 @@
 
 
-# 📌 **SQL Case Study — Employee Management Database**
+# 📊 SQL Database Assignment – Salesman, Customer & Orders
 
-This project is a complete SQL case study built using **MS SQL Server**.
-It includes database creation, table creation, foreign key relationships, data insertion, and 50+ SQL queries covering **Joins, Group By, Having, Case, Subqueries**, and more.
+## 📌 Project Overview
 
----
-
-# 📂 **Project Structure**
-
-### ✔ Database
-
-`case_study`
-
-### ✔ Tables
-
-* **Location**
-* **Department**
-* **Job**
-* **Employees**
-
-### ✔ Queries Included
-
-* Basic SELECT queries
-* Filtering & pattern matching
-* ORDER BY operations
-* GROUP BY & HAVING
-* Conditional CASE statements
-* JOINS (INNER, LEFT, RIGHT through logical cases)
-* Subqueries (single row, multiple row, correlated)
-* Data analysis queries
+This project demonstrates **hands-on SQL practice** by creating and managing a relational database using **Salesman, Customer, and Orders** tables.
+The goal is to understand **database design, constraints, relationships, and querying real-world data**.
 
 ---
 
-# 🛠 **1. Database & Table Creation**
+## 🛠️ Technologies Used
 
-### **Location Table**
-
-```sql
-CREATE TABLE Location (
-    Location_ID INT PRIMARY KEY,
-    City VARCHAR(30)
-);
-```
-
-### **Department Table**
-
-```sql
-CREATE TABLE Department (
-    Department_ID INT PRIMARY KEY,
-    Name VARCHAR(30),
-    Location_ID INT,
-    FOREIGN KEY (Location_ID) REFERENCES Location(Location_ID)
-);
-```
-
-### **Job Table**
-
-```sql
-CREATE TABLE Job (
-    Job_ID INT PRIMARY KEY,
-    Designation VARCHAR(30)
-);
-```
-
-### **Employees Table**
-
-```sql
-CREATE TABLE Employees (
-    Employee_ID INT PRIMARY KEY,
-    Last_Name VARCHAR(30),
-    First_Name VARCHAR(30),
-    Middle_Name VARCHAR(10),
-    Job_ID INT,
-    Hire_Date DATE,
-    Salary INT,
-    Comm INT,
-    Department_ID INT,
-    FOREIGN KEY (Job_ID) REFERENCES Job(Job_ID),
-    FOREIGN KEY (Department_ID) REFERENCES Department(Department_ID)
-);
-```
+* **SQL (MS SQL Server compatible)**
+* Relational Database Concepts
 
 ---
 
-# 🧩 **2. Insert Statements**
+## 📂 Database Structure
 
-Sample:
+### 1️⃣ Salesman Table
 
-```sql
-INSERT INTO Employees (Employee_ID, Last_Name, First_Name, Middle_Name, Job_ID, Hire_Date, Salary, Comm, Department_ID)
-VALUES
-(7369, 'Smith', 'John', 'Q', 667, '1984-12-17', 800, NULL, 20),
-(7499, 'Allen', 'Kevin', 'J', 670, '1985-02-20', 1600, 300, 30);
-```
+Stores salesman details.
 
-(Full script contains all data.)
+* `Salesman_id` (Primary Key)
+* `Salesman_Name`
+* `Commission`
+* `City` (Default: Paris)
+* `Age`
 
----
+### 2️⃣ Customer Table
 
-# 📊 **3. SQL Queries Included**
+Stores customer details linked to salesman.
 
-## 🔹 Basic Queries
+* `Customer_id`
+* `Customer_name` (NOT NULL)
+* `Purchase_amount`
+* `Salesman_id` (Foreign Key)
 
-* Select specific columns
-* Filtering using WHERE
-* Ranges (BETWEEN)
-* Pattern matching (LIKE)
+### 3️⃣ Orders Table
 
-## 🔹 Sorting
+Stores order transactions.
 
-```sql
-SELECT * FROM Employees ORDER BY Last_Name ASC;
-```
-
-## 🔹 Aggregations (GROUP BY + HAVING)
-
-```sql
-SELECT Department_ID, AVG(Salary) AS Avg_Salary
-FROM Employees
-GROUP BY Department_ID;
-```
-
-## 🔹 JOIN Queries
-
-```sql
-SELECT E.*, D.Name
-FROM Employees E
-JOIN Department D ON E.Department_ID = D.Department_ID;
-```
-
-## 🔹 CASE (Conditional Statements)
-
-```sql
-SELECT First_Name, Salary,
-CASE
-  WHEN Salary >= 5000 THEN 'A'
-  WHEN Salary >= 3000 THEN 'B'
-  ELSE 'C'
-END AS Grade
-FROM Employees;
-```
-
-## 🔹 Subqueries
-
-```sql
-SELECT *
-FROM Employees
-WHERE Salary = (SELECT MAX(Salary) FROM Employees);
-```
+* `Order_id`
+* `Customer_id`
+* `Salesman_id`
+* `Order_date`
+* `Amount`
 
 ---
 
-# 📈 **4. Analysis Queries**
+## 🔐 Constraints Implemented
 
-* Department-wise salary summary
-* Job-wise salary summary
-* Employees joined per month/year
-* Departments with ≥ 3 employees
-* Employees with NULL commission
-* Employees who earn more than the department average
-* Second highest salary
-* Departments with no employees
+* **PRIMARY KEY** on `Salesman_id`
+* **FOREIGN KEY** between Customer → Salesman
+* **NOT NULL** constraint on `Customer_name`
+* **DEFAULT constraint** on `City`
+* Ensured **referential integrity** by inserting parent records first
 
 ---
 
-# 🗂 **5. Full SQL Script**
+## 📊 SQL Operations Covered
 
-The repository contains the full `.sql` file including:
-
-✔ Table creation
-✔ Insert commands
-✔ 50+ SQL queries
-✔ CLEAN & ORGANIZED STRUCTURE
-
----
-
-# 🚀 **6. How to Run the Project**
-
-1. Install **MS SQL Server / SQL Server Management Studio**
-2. Create the database:
-
-   ```sql
-   CREATE DATABASE case_study;
-   USE case_study;
-   ```
-3. Run the table creation statements
-4. Insert the sample data
-5. Execute the queries as needed
+✔ Database & table creation
+✔ Data insertion
+✔ ALTER TABLE operations
+✔ PRIMARY & FOREIGN KEY constraints
+✔ DEFAULT & NOT NULL constraints
+✔ Filtering using `WHERE`, `LIKE`, `BETWEEN`
+✔ `INNER JOIN` and `RIGHT JOIN`
+✔ `UNION` vs `UNION ALL`
+✔ Querying relational data
 
 ---
 
-# 🎯 **7. Skills Practiced**
+## 🧠 Sample Tasks Performed
 
-* SQL Joins
-* Database design
-* Data grouping & aggregation
-* Conditional logic
-* Subqueries
-* Real-world business data analysis
+* Insert new orders into existing tables
+* Retrieve customers with purchase conditions
+* Combine salesman IDs using UNION & UNION ALL
+* Join multiple tables to fetch business insights
+* Use RIGHT JOIN to analyze unmatched records
 
 ---
 
-# 📮 **8. Author**
-Tonny
+## 📎 File Included
+
+* `Assignment 1 answer.sql` – Complete SQL script with table creation, data insertion, and queries
+
+---
+
+## 🚀 Learning Outcome
+
+This project strengthened my understanding of:
+
+* Relational database design
+* Real-world SQL constraints
+* Querying structured data efficiently
+* Practical use of joins and set operations
+
+---
+
+## 📬 Feedback & Suggestions
+
+I’m actively learning SQL and databases.
+Feedback, improvements, and suggestions are always welcome!
+
+---
+
+### ⭐ If you like this project, feel free to star the repository!
+
+---
