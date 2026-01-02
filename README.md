@@ -1,112 +1,126 @@
 
-
-# 📊 SQL Database Assignment – Salesman, Customer & Orders
+# 📘 SQL Hands-on Practice Project
 
 ## 📌 Project Overview
 
-This project demonstrates **hands-on SQL practice** by creating and managing a relational database using **Salesman, Customer, and Orders** tables.
-The goal is to understand **database design, constraints, relationships, and querying real-world data**.
+This project is a **hands-on SQL practice** focused on understanding core SQL concepts through real queries instead of memorization.
+It covers data sorting, joins, functions, conditional logic, and set operations using sample tables.
+
+The goal of this project is to **strengthen SQL fundamentals** and understand how SQL works in real-world scenarios.
 
 ---
 
-## 🛠️ Technologies Used
+## 🗂️ Database Used
 
-* **SQL (MS SQL Server compatible)**
-* Relational Database Concepts
+**Database Name:** `joints`
 
 ---
 
-## 📂 Database Structure
+## 📊 Tables Created
 
-### 1️⃣ Salesman Table
+### 1️⃣ Orders Table
 
-Stores salesman details.
+Stores order-related information.
 
-* `Salesman_id` (Primary Key)
-* `Salesman_Name`
-* `Commission`
-* `City` (Default: Paris)
-* `Age`
+* `order_id`
+* `order_date`
+* `amount`
+* `customer_id`
 
 ### 2️⃣ Customer Table
 
-Stores customer details linked to salesman.
+Stores customer details.
 
-* `Customer_id`
-* `Customer_name` (NOT NULL)
-* `Purchase_amount`
-* `Salesman_id` (Foreign Key)
+* `customer_id`
+* `customer_name`
+* `menu`
 
-### 3️⃣ Orders Table
+### 3️⃣ Employee Tables
 
-Stores order transactions.
+Two tables created with the same structure for practicing set operations:
 
-* `Order_id`
-* `Customer_id`
-* `Salesman_id`
-* `Order_date`
-* `Amount`
+* `employee_details1`
+* `employee_details2`
 
 ---
 
-## 🔐 Constraints Implemented
+## 🛠️ SQL Concepts Covered
 
-* **PRIMARY KEY** on `Salesman_id`
-* **FOREIGN KEY** between Customer → Salesman
-* **NOT NULL** constraint on `Customer_name`
-* **DEFAULT constraint** on `City`
-* Ensured **referential integrity** by inserting parent records first
+### 🔹 Data Sorting
 
----
+* Used `ORDER BY` with:
 
-## 📊 SQL Operations Covered
-
-✔ Database & table creation
-✔ Data insertion
-✔ ALTER TABLE operations
-✔ PRIMARY & FOREIGN KEY constraints
-✔ DEFAULT & NOT NULL constraints
-✔ Filtering using `WHERE`, `LIKE`, `BETWEEN`
-✔ `INNER JOIN` and `RIGHT JOIN`
-✔ `UNION` vs `UNION ALL`
-✔ Querying relational data
+  * `ASC` (ascending)
+  * `DESC` (descending)
+* Sorted the **Orders** table based on the `amount`.
 
 ---
 
-## 🧠 Sample Tasks Performed
+### 🔹 Joins
 
-* Insert new orders into existing tables
-* Retrieve customers with purchase conditions
-* Combine salesman IDs using UNION & UNION ALL
-* Join multiple tables to fetch business insights
-* Use RIGHT JOIN to analyze unmatched records
+Practiced different types of joins between **Customer** and **Orders** tables:
 
----
+* `INNER JOIN`
+* `LEFT JOIN`
+* `RIGHT JOIN`
+* `FULL OUTER JOIN`
 
-## 📎 File Included
-
-* `Assignment 1 answer.sql` – Complete SQL script with table creation, data insertion, and queries
+This helped understand how SQL handles **matching and non-matching records**.
 
 ---
 
-## 🚀 Learning Outcome
+### 🔹 Aggregate Functions
 
-This project strengthened my understanding of:
+Used built-in functions to analyze order data:
 
-* Relational database design
-* Real-world SQL constraints
-* Querying structured data efficiently
-* Practical use of joins and set operations
-
----
-
-## 📬 Feedback & Suggestions
-
-I’m actively learning SQL and databases.
-Feedback, improvements, and suggestions are always welcome!
+* `MIN(amount)`
+* `MAX(amount)`
+* `AVG(amount)`
 
 ---
 
-### ⭐ If you like this project, feel free to star the repository!
+### 🔹 CASE Statement
+
+Used `CASE` to classify order amounts as:
+
+* Low amount
+* Medium amount
+* High amount
+
+This helped convert raw data into meaningful insights.
 
 ---
+
+### 🔹 User-Defined Functions
+
+* Created a scalar function to multiply a given number by 10.
+* Created a table-valued function to fetch orders greater than a given amount.
+
+These functions improved **reusability and clarity** of queries.
+
+---
+
+### 🔹 Set Operations
+
+Using `employee_details1` and `employee_details2`, practiced:
+
+* `UNION`
+* `INTERSECT`
+* `EXCEPT`
+
+This helped understand how SQL handles:
+
+* Duplicate records
+* Common records
+* Unmatched records
+
+---
+
+## 🎯 Key Learnings
+
+* Practical SQL projects improve understanding more than theory alone.
+* Joins and set operations become clear when working with real data.
+* SQL functions and CASE statements are powerful for data analysis.
+
+
+
